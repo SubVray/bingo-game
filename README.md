@@ -1,50 +1,83 @@
-# React + TypeScript + Vite
+# Bingo Web Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+¡Bienvenido al juego de Bingo en la web! Este proyecto te permite jugar Bingo de manera interactiva, gestionando cartones y eligiendo diferentes modos de juego.
 
-Currently, two official plugins are available:
+## Descripción
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Este juego de Bingo ofrece dos opciones: **Mi Carton Bingo** y **Cartones Bingo**. Actualmente, la funcionalidad implementada se centra en **Cartones Bingo**, donde los jugadores pueden gestionar sus cartones de Bingo, seleccionar la cantidad de cartones a jugar y elegir entre varios modos de juego.
 
-## Expanding the ESLint configuration
+## Funcionalidades
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Gestión de Cartones**: Permite seleccionar la cantidad de cartones de Bingo que deseas jugar.
+- **Selección de Cartones**: Puedes elegir qué cartones jugar, facilitando la personalización de tu experiencia de juego.
+- **Modos de Juego**: Selecciona entre diferentes modos de juego, como:
+  - Carton lleno
+  - 4 esquinas
+  - Horizontal
+  - Vertical
+  - Diagonal
+  - Z
+  - Z invertida
+  - I
+  - L
+  - L invertida
+  - O
+  - U
+  - U invertida
+  - N
+  - M
+  - W
+  - T
+  - E
+  - F
+  - Y
+  - B
+  - 7
+  - H
+  - X
+  - Flecha arriba
+  - Flecha abajo
+  - Flecha izquierda
+  - Flecha derecha
 
-- Configure the top-level `parserOptions` property like this:
+## Tecnologías Utilizadas
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **React**: Biblioteca de JavaScript para construir interfaces de usuario.
+- **Vite**: Herramienta de construcción y desarrollo para aplicaciones modernas de JavaScript.
+- **HTML**: Para la estructura de la página.
+- **CSS**: Para el diseño y la presentación visual.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Instalación
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Para ejecutar el proyecto en tu máquina local, sigue estos pasos:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/SubVray/bingo-game.git
+   
+2. Navega al directorio del proyecto:
+    ```bash
+   cd nombre_del_repositorio
+   
+3. Instala las dependencias:
+    ```bash
+   pnpm install | npm install
+   
+4. Inicia el servidor de desarrollo::
+    ```bash
+   pnpm run dev | npm run dev
+   
+5. Abre tu navegador y visita http://localhost:5173 para ver la aplicación en acción.
+
+## Licencia
+Este proyecto está bajo la Licencia MIT. Para más detalles, consulta el archivo LICENSE.
+
+## Contacto
+Si tienes alguna pregunta o sugerencia, no dudes en ponerte en contacto conmigo:
+    
+Jim Bolaños Zúñiga 
+
+jim.alberto.21.2@gmail.com
+
+SubVray
+   
