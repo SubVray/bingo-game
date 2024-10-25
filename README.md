@@ -44,8 +44,9 @@ Este juego de Bingo ofrece dos opciones: **Mi Carton Bingo** y **Cartones Bingo*
 
 - **React**: Biblioteca de JavaScript para construir interfaces de usuario.
 - **Vite**: Herramienta de construcción y desarrollo para aplicaciones modernas de JavaScript.
-- **HTML**: Para la estructura de la página.
-- **CSS**: Para el diseño y la presentación visual.
+- **TailwindCSS**: Para el diseño y la presentación visual.
+- **Sweetalert2**: Para el uso de modales.
+- **ReactSelect**: Para mejorar la funcionalidad de los desplegables.
 
 ## Instalación
 
