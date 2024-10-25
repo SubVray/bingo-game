@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--accent: 136, 58, 234;
+	--accent-light: 224, 204, 250;
+	--accent-dark: 49, 10, 101;
+	--accent-gradient: linear-gradient(
+		45deg,
+		rgb(var(--accent)),
+		rgb(var(--accent-light)) 30%,
+		white 60%
+	);
+}
+html {
+	background: #13151a;
+}
+body {
+	font-family: "Rubik Variable", sans-serif;
+	color: #f9fafb;
+	scroll-behavior: smooth;
+	scroll-snap-type: y mandatory;
+}
+
+/* editar estilos de barra de scroll */
+::-webkit-scrollbar {
+	width: 0px;
+}
+
+::-webkit-scrollbar-track {
+	background: #13151a;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #f9fafb;
+	border-radius: 20px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #f9fafb;
+}
