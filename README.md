@@ -1,5 +1,7 @@
 # Bingo Web Game
 
+<img src="https://raw.githubusercontent.com/SubVray/bingo-game/refs/heads/main/public/images/bingo.webp" alt="Bingo Game" width="500" height="auto" />
+
 ¡Bienvenido al juego de Bingo en la web! Este proyecto te permite jugar Bingo de manera interactiva, gestionando cartones y eligiendo diferentes modos de juego.
 
 ## Descripción
