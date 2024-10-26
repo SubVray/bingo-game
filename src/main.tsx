@@ -7,6 +7,7 @@ import App from "./App.tsx"
 import PlayBingo from "./pages/PlayBingo.tsx"
 import QuantityOfBingoCards from "./pages/QuantityOfBingoCards.tsx"
 import SelectBingoCard from "./pages/SelectBingoCard.tsx"
+import SelectMiBingoCard from "./pages/SelectMiBingoCard.tsx"
 
 const router = createBrowserRouter([
 	{
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
 	{
 		path: "/play-bingo",
 		element: <PlayBingo />,
+	},
+	{
+		path: "/select-mi-bingo-card",
+		element: <SelectMiBingoCard />,
 	},
 ])
 
