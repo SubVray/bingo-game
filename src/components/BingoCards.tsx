@@ -18,9 +18,11 @@ const soundWin = new Audio("/sounds/win.mp3")
 const BingoCards = ({
 	carton,
 	modeGames,
+	numberOfCards,
 }: {
 	carton: Carton
 	modeGames: ModeGame[]
+	numberOfCards: number
 }) => {
 	const MySwal = withReactContent(Swal)
 	const { width, height } = useWindowSize()
@@ -205,11 +207,11 @@ const BingoCards = ({
 					))}
 			</div>
 			<div className="relative p-2">
-				<div className="mb-2 flex items-center justify-center">
-					<div className="absolute right-4">
+				<div className="mb-2 flex items-center justify-between">
+					<div className={`absolute right-2 flex items-center justify-center`}>
 						<button onClick={() => setShowAndHide(!showAndHide)}>
 							<Chevron
-								className={`size-5 text-gray-50 transition duration-300 ${showAndHide ? "rotate-180" : ""}`}
+								className={` text-gray-50 transition duration-300 ${showAndHide ? "rotate-180" : ""} ${numberOfCards > 2 ? "size-4" : "size-6"}`}
 							/>
 						</button>
 					</div>
