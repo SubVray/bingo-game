@@ -1,6 +1,7 @@
 import { Button } from "@/components/Button"
 import { Logo } from "@/components/Logo"
 import Layout from "@/layout/Layout"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import Swal from "sweetalert2"
 import withReactContent from "sweetalert2-react-content"
@@ -8,6 +9,14 @@ import withReactContent from "sweetalert2-react-content"
 const QuantityOfBingoCards = () => {
 	const navigate = useNavigate()
 	const SwalQuantityOfBingoCards = withReactContent(Swal)
+	const [gameMode, setGameMode] = useState<string>("")
+
+	useEffect(() => {
+		const gameMode = localStorage.getItem("gameMode")
+		if (gameMode) {
+			setGameMode(gameMode)
+		}
+	}, [])
 
 	const selectNumberOfBingoCards = async () => {
 		const { value: quantityOfBingoCards } = await SwalQuantityOfBingoCards.fire(
@@ -28,7 +37,14 @@ const QuantityOfBingoCards = () => {
 
 		if (quantityOfBingoCards) {
 			localStorage.setItem("quantityOfBingoCards", quantityOfBingoCards)
-			navigate("/select-bingo-card")
+
+			if (gameMode === "mi-bingo") {
+				navigate("/select-mi-bingo-card")
+			}
+
+			if (gameMode === "carton-bingo") {
+				navigate("/select-bingo-card")
+			}
 		}
 	}
 
