@@ -1,5 +1,7 @@
 import { Carton } from "@/types/carton"
 import { ModeGame } from "@/types/modeGames"
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import Swal from "sweetalert2"
 import withReactContent from "sweetalert2-react-content"
 import BingoCards from "./BingoCards"
@@ -13,8 +15,9 @@ export const PlayBingoGame = ({
 	mostrarCartonesSeleccionados: Carton[]
 	numberOfCards: number
 }) => {
+	const navigate = useNavigate()
 	const MySwal = withReactContent(Swal)
-
+	const [gameMode, setGameMode] = useState<string>("")
 	const fetchSavedGames = (carton: Carton) => {
 		const allCartones = Object.keys(localStorage)
 			.filter((key) => key.startsWith("carton-")) // Filtra las claves que comienzan con "carton-"
@@ -23,6 +26,13 @@ export const PlayBingoGame = ({
 		const cartonSaved = allCartones.find((c) => c.id === carton.id)
 		return cartonSaved
 	}
+
+	useEffect(() => {
+		const gameMode = localStorage.getItem("gameMode")
+		if (gameMode) {
+			setGameMode(gameMode)
+		}
+	}, [])
 
 	const handleExit = () => {
 		MySwal.fire({
@@ -42,7 +52,14 @@ export const PlayBingoGame = ({
 				Object.keys(localStorage)
 					.filter((key) => key.startsWith("cartonIs"))
 					.map((key) => localStorage.removeItem(key))
-				window.location.href = "/select-bingo-card"
+
+				if (gameMode === "mi-bingo") {
+					navigate("/select-mi-bingo-card")
+				}
+
+				if (gameMode === "carton-bingo") {
+					navigate("/select-bingo-card")
+				}
 			}
 		})
 	}
