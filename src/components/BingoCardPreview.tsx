@@ -1,9 +1,9 @@
-import type { Carton } from "@/data/cartones"
+import { Carton } from "@/types/carton"
 
 export const BingoCardPreview = ({ carton }: { carton: Carton }) => {
 	return (
 		<div className="w-full select-none rounded-md border border-gray-500/50 shadow ring-gray-500 hover:ring focus:ring active:ring">
-			<div className="">
+			<div>
 				<header className="flex w-full items-center justify-evenly py-1 xs:bg-red-500 xsm:bg-blue-500">
 					<div className="flex w-8 flex-col items-center justify-center xs:w-9">
 						<span className="text-sm font-bold">B</span>
@@ -30,14 +30,14 @@ export const BingoCardPreview = ({ carton }: { carton: Carton }) => {
 					{carton &&
 						[0, 1, 2, 3, 4].map((index) => (
 							<div
-								className={`flex border-gray-500 ${index !== 0 ? "border-t" : "border-none"}`}
+								className={`w-full flex border-gray-500 ${index !== 0 ? "border-t" : "border-none"}`}
 								key={index}
 							>
 								{["b", "i", "n", "g", "o"].map(
 									(letra: string | "b" | "i" | "n" | "g" | "o", letraIndex) => (
 										<div
 											key={`${letra}-${letraIndex}`}
-											className={`h-[35px] w-8 whitespace-nowrap border-gray-500 text-center font-medium xs:w-9 xsm:w-10 ${letra !== "o" ? "border-r" : "border-none"}`}
+											className={`h-[35px] w-full whitespace-nowrap border-gray-500 text-center font-medium xs:w-9 xsm:w-10 ${letra !== "o" ? "border-r" : "border-none"}`}
 										>
 											<span className="mx-auto flex h-full w-full flex-col items-center justify-center text-center text-[11px]">
 												{carton.cartonData[letra][index].number === "FREE" ? (
