@@ -18,7 +18,7 @@ const PlayBingo = () => {
 	}, [])
 
 	useEffect(() => {
-		const numberOfCards = localStorage.getItem("numberOfCards")
+		const numberOfCards = localStorage.getItem("quantityOfBingoCards")
 		if (numberOfCards) {
 			setNumberOfCards(JSON.parse(numberOfCards))
 		}
