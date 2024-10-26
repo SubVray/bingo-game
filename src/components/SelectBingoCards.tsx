@@ -96,7 +96,10 @@ export const SelectBingoCards = ({
 			{/* Previewed Cards */}
 			<div className="flex w-full items-center justify-center gap-2">
 				{previewedCards.map((card) => (
-					<div key={card.id}>
+					<div
+						key={card.id}
+						className="w-full"
+					>
 						<BingoCardPreview carton={card} />
 						<div className="mt-4 flex w-full gap-2">
 							<button
