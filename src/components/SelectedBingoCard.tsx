@@ -1,6 +1,6 @@
-import type { Carton } from "@/data/cartones"
+import { Carton } from "@/types/carton"
 
-export const SelectedBingoCard = ({ carton }: { carton: Carton[] | any }) => {
+export const SelectedBingoCard = ({ carton }: { carton: Carton }) => {
 	return (
 		<div className="w-full select-none rounded-md border border-gray-500/50 shadow">
 			<div className="w-full">
@@ -39,7 +39,7 @@ export const SelectedBingoCard = ({ carton }: { carton: Carton[] | any }) => {
 										className={`h-14 w-full whitespace-nowrap border-gray-500 text-center font-medium xs:w-full xsm:w-full ${letra !== "o" ? "border-r" : "border-none"}`}
 									>
 										<span className="mx-auto flex h-full w-full flex-col items-center justify-center text-center text-[11px]">
-											{carton?.cartonData[letra][index].number === "FREE" ? (
+											{carton.cartonData[letra][index].number === "FREE" ? (
 												<>
 													<span className="block text-[10px] font-semibold">
 														FREE
@@ -47,7 +47,7 @@ export const SelectedBingoCard = ({ carton }: { carton: Carton[] | any }) => {
 													<span className="-mt-2 block">{carton.id}</span>
 												</>
 											) : (
-												carton?.cartonData[letra][index].number
+												carton.cartonData[letra][index].number
 											)}
 										</span>
 									</div>
