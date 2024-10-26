@@ -61,17 +61,18 @@ export const PlayBingoGame = ({
 				</div>
 			</header>
 			<div
-				className={`mt-6 flex w-full flex-wrap ${numberOfCards > 2 ? "flex-row" : "flex-col gap-3"}`}
+				className={`mt-6 flex w-full flex-wrap ${numberOfCards > 2 ? "flex-row" : "flex-col gap-3"} `}
 			>
 				{mostrarCartonesSeleccionados &&
 					mostrarCartonesSeleccionados.map((carton: Carton) => (
 						<div
 							key={carton.id} // Esto fuerza la actualización
-							className={` ${numberOfCards > 2 ? "w-1/2" : "w-full"}`}
+							className={` ${numberOfCards > 2 ? "w-1/2" : "w-full"}  `}
 						>
 							<BingoCards
 								carton={fetchSavedGames(carton) || carton}
 								modeGames={modeGames}
+								numberOfCards={numberOfCards}
 							/>
 						</div>
 					))}
