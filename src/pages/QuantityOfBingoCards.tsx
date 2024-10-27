@@ -52,10 +52,10 @@ const QuantityOfBingoCards = () => {
 		<Layout>
 			<section>
 				<Logo />
-				<p className="text-center text-xl font-semibold my-6 max-w-[40ch] mx-auto">
-					Por favor seleccione la cantidad de cartones que desea.
+				<p className="text-center text-xl font-semibold my-6 max-w-[35ch] mx-auto">
+					Seleccione la cantidad de cartones
 				</p>
-				<div className="">
+				<div>
 					<Button
 						onClick={selectNumberOfBingoCards}
 						className="bg-blue-500 border-blue-500/50 hover:ring ring-blue-500/30 hover:bg-blue-600 hover:border-blue-500"
