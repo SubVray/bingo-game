@@ -86,12 +86,17 @@ const SelectMiBingoCard = () => {
 						Salir
 					</Button>
 				</header>
-				{Array.from(Array(storedNumberOfBingoCards).keys()).map((index) => (
-					<CreateMiBingoCards
-						key={index}
-						storedNumberOfBingoCards={storedNumberOfBingoCards}
-					/>
-				))}
+				<div className="">
+					<p className="mx-auto mb-2 max-w-[25ch] text-center text-xl font-semibold md:max-w-[35ch]">
+						Seleccione cada celda para colocar el numero en el carton
+					</p>
+					{Array.from(Array(storedNumberOfBingoCards).keys()).map((index) => (
+						<CreateMiBingoCards
+							key={index}
+							storedNumberOfBingoCards={storedNumberOfBingoCards}
+						/>
+					))}
+				</div>
 			</section>
 		</Layout>
 	)
