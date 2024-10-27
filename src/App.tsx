@@ -9,8 +9,8 @@ const App = () => {
 		<Layout>
 			<section>
 				<Logo />
-				<p className="text-center text-xl font-semibold my-6 max-w-[40ch] mx-auto">
-					Seleccione el modo de juego que desea.
+				<p className="text-center text-xl font-semibold my-6 max-w-[35ch] mx-auto">
+					Seleccione el modo de juego
 				</p>
 				<div>
 					<Button
