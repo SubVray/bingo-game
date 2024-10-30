@@ -1,5 +1,7 @@
 import { Button } from "@/components/Button"
+import { Container } from "@/components/Container"
 import { Logo } from "@/components/Logo"
+import { Section } from "@/components/Section"
 import Layout from "@/layout/Layout"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
@@ -13,49 +15,61 @@ const QuantityOfBingoCards = () => {
 
 	useEffect(() => {
 		const gameMode = localStorage.getItem("gameMode")
-		if (gameMode) {
-			setGameMode(gameMode)
-		}
+		if (gameMode) setGameMode(gameMode)
 	}, [])
 
 	const selectNumberOfBingoCards = async () => {
-		const { value: quantityOfBingoCards } = await SwalQuantityOfBingoCards.fire(
-			{
-				title: "Cuantos cartones?",
-				icon: "question",
-				input: "range",
-				inputAttributes: {
-					min: "1",
-					max: "4",
-					step: "1",
-				},
-				inputValue: 2,
-				confirmButtonText: "Continue",
-				confirmButtonColor: "#3085d6",
-			}
-		)
+		try {
+			const { value: quantityOfBingoCards } =
+				await SwalQuantityOfBingoCards.fire({
+					title: "Cartones",
+					text: "Seleccione la cantidad de cartones",
+					icon: "question",
+					input: "range",
+					inputAttributes: {
+						min: "1",
+						max: "4",
+						step: "1",
+					},
+					inputValue: 2,
+					confirmButtonText: "Continuar",
+					confirmButtonColor: "#3085d6",
+					customClass: {
+						popup: " bg-[#13151a] ",
+						title: "text-neutral-200",
+						input: "!bg-transparent",
+					},
+				})
 
-		if (quantityOfBingoCards) {
-			localStorage.setItem("quantityOfBingoCards", quantityOfBingoCards)
+			if (quantityOfBingoCards) {
+				localStorage.setItem("quantityOfBingoCards", quantityOfBingoCards)
 
-			if (gameMode === "mi-bingo") {
-				navigate("/select-mi-bingo-card")
-			}
+				if (gameMode === "mi-bingo") {
+					navigate("/select-mi-bingo-card")
+				}
 
-			if (gameMode === "carton-bingo") {
-				navigate("/select-bingo-card")
+				if (gameMode === "carton-bingo") {
+					navigate("/select-bingo-card")
+				}
 			}
+		} catch (error) {
+			console.error("Error selecting bingo cards:", error)
+			Swal.fire(
+				"Error",
+				"Hubo un problema al seleccionar los cartones.",
+				"error"
+			)
 		}
 	}
 
 	return (
 		<Layout>
-			<section>
+			<Section>
 				<Logo />
 				<p className="text-center text-xl font-semibold my-6 max-w-[35ch] mx-auto">
 					Seleccione la cantidad de cartones
 				</p>
-				<div>
+				<Container>
 					<Button
 						onClick={selectNumberOfBingoCards}
 						className="bg-blue-500 border-blue-500/50 hover:ring ring-blue-500/30 hover:bg-blue-600 hover:border-blue-500"
@@ -68,8 +82,8 @@ const QuantityOfBingoCards = () => {
 					>
 						Salir
 					</Button>
-				</div>
-			</section>
+				</Container>
+			</Section>
 		</Layout>
 	)
 }
