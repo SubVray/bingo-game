@@ -1,4 +1,5 @@
 import { PlayBingoGame } from "@/components/PlayBingoGame"
+import { Section } from "@/components/Section"
 import Layout from "@/layout/Layout"
 import { Carton } from "@/types/carton"
 import { ModeGame } from "@/types/modeGames"
@@ -10,35 +11,33 @@ const PlayBingo = () => {
 		useState<Carton[]>([])
 	const [numberOfCards, setNumberOfCards] = useState<number>(0)
 
+	// Load initial data from localStorage on component mount
 	useEffect(() => {
-		const modeGames = localStorage.getItem("modeGames")
-		if (modeGames) {
-			setModeGames(JSON.parse(modeGames))
+		try {
+			const modeGames = localStorage.getItem("modeGames")
+			const numberOfCards = localStorage.getItem("quantityOfBingoCards")
+			const cartonesSeleccionados = localStorage.getItem("selectedBingoCards")
+
+			if (modeGames) setModeGames(JSON.parse(modeGames))
+
+			if (numberOfCards) setNumberOfCards(JSON.parse(numberOfCards))
+
+			if (cartonesSeleccionados)
+				setMostrarCartonesSeleccionados(JSON.parse(cartonesSeleccionados))
+		} catch (error) {
+			console.error("Error loading data from localStorage:", error)
 		}
 	}, [])
 
-	useEffect(() => {
-		const numberOfCards = localStorage.getItem("quantityOfBingoCards")
-		if (numberOfCards) {
-			setNumberOfCards(JSON.parse(numberOfCards))
-		}
-	}, [])
-
-	useEffect(() => {
-		const cartonesSeleccionados = localStorage.getItem("selectedBingoCards")
-		if (cartonesSeleccionados) {
-			setMostrarCartonesSeleccionados(JSON.parse(cartonesSeleccionados))
-		}
-	}, [])
 	return (
 		<Layout>
-			<section className="w-full mt-4">
+			<Section className="w-full mt-4">
 				<PlayBingoGame
 					modeGames={modeGames}
 					mostrarCartonesSeleccionados={mostrarCartonesSeleccionados}
 					numberOfCards={numberOfCards}
 				/>
-			</section>
+			</Section>
 		</Layout>
 	)
 }
