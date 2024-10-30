@@ -1,5 +1,6 @@
 import "@/styles/font.css"
 import "@/styles/index.css"
+// Supports weights 300-900
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
