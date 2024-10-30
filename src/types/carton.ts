@@ -1,17 +1,11 @@
+export type BingoLetter = "b" | "i" | "n" | "g" | "o"
 export interface CartonData {
-	number: string | number
+	number: "FREE" | number
 	isActive: boolean
 }
 
 export interface Carton {
 	id: number
-	cartonData: {
-		[key: string]: CartonData[] // Permite acceder usando un string
-		b: CartonData[]
-		i: CartonData[]
-		n: CartonData[]
-		g: CartonData[]
-		o: CartonData[]
-	}
+	cartonData: Record<BingoLetter, CartonData[]>
 	next: number
 }
