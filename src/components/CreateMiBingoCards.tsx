@@ -1,4 +1,4 @@
-import { CartonData } from "@/types/carton"
+import { BingoLetter, CartonData } from "@/types/carton"
 import { useState } from "react"
 const FREE_SPACE = "FREE" // Define el espacio libre
 export const CreateMiBingoCards = ({
@@ -6,7 +6,7 @@ export const CreateMiBingoCards = ({
 }: {
 	storedNumberOfBingoCards: number
 }) => {
-	const [cartonData, setCartonData] = useState<CartonData>({
+	const [cartonData, setCartonData] = useState<Carton["cartonData"]>({
 		b: [
 			{ number: 1, isActive: false },
 			{ number: 3, isActive: false },
@@ -17,7 +17,7 @@ export const CreateMiBingoCards = ({
 		i: [
 			{ number: 26, isActive: false },
 			{ number: 28, isActive: false },
-			{ number: 22, isActive: false },
+			{ number: 33, isActive: false },
 			{ number: 21, isActive: false },
 			{ number: 29, isActive: false },
 		],
@@ -46,45 +46,46 @@ export const CreateMiBingoCards = ({
 
 	const handleChangeNumber = (
 		e: React.ChangeEvent<HTMLInputElement>,
-		letra: string,
+		letra: string | BingoLetter,
 		index: number
 	) => {
 		const value = parseInt(e.target.value)
 		if (!isNaN(value)) {
-			// Asegúrate de que el número esté dentro del rango adecuado para cada letra
-			let max: number = 0
-			let min: number = 0
+			// Rango para cada letra
+			let [min, max] = [0, 0]
 			switch (letra) {
 				case "b":
-					min = 1
-					max = 15
+					;[min, max] = [1, 15]
 					break
 				case "i":
-					min = 16
-					max = 30
+					;[min, max] = [16, 30]
 					break
 				case "n":
-					min = 31
-					max = 45
+					;[min, max] = [31, 45]
 					break
 				case "g":
-					min = 46
-					max = 60
+					;[min, max] = [46, 60]
 					break
 				case "o":
-					min = 61
-					max = 75
-					break
-				default:
+					;[min, max] = [61, 75]
 					break
 			}
 
 			if (value >= min && value <= max) {
-				const updatedData = { ...cartonData }
-				updatedData[letra][index] = { number: value, isActive: false } // Activa el número ingresado
+				console.log("Numero dentro del rango")
+				const updatedData = { ...cartonData } as Record<
+					BingoLetter,
+					CartonData[]
+				>
+				updatedData[letra as BingoLetter][index] = {
+					number: value,
+					isActive: true,
+				}
 				setCartonData(updatedData)
-				// Comprobar si el cartón está lleno
+
+				// Comprobar si el cartón está lleno y guardarlo en localStorage
 				if (isCartonFull(updatedData)) {
+					console.log("El cartón está lleno")
 					saveCartonToLocalStorage(updatedData)
 				}
 			} else {
@@ -93,30 +94,33 @@ export const CreateMiBingoCards = ({
 		}
 	}
 
-	const isCartonFull = (data) => {
-		// Verifica si todos los números, excepto el espacio libre, están activos
+	const isCartonFull = (data: Record<BingoLetter, CartonData[]>) => {
+		// Verifica si todos los números están activos
 		return Object.keys(data).every((key) => {
-			return data[key].every(
-				(item) => !item.isActive || item.number === FREE_SPACE
-			)
+			const dataKey = data[key as BingoLetter]
+			return dataKey.every((item) => item.isActive)
 		})
 	}
 
-	const saveCartonToLocalStorage = (data: CartonData) => {
+	const saveCartonToLocalStorage = (
+		data: Record<BingoLetter, CartonData[]>
+	) => {
 		// Obtener los cartones existentes
-		const existingCards =
-			JSON.parse(localStorage.getItem("selectedBingoCards") || "[]") || []
-		if (existingCards.length < storedNumberOfBingoCards) {
-			const fullData = {
-				id: Math.floor(Math.random() * 1000),
-				cartonData: data,
+		try {
+			const existingCards =
+				JSON.parse(localStorage.getItem("selectedBingoCards") || "[]") || []
+			if (existingCards.length < storedNumberOfBingoCards) {
+				const newCard = { id: Date.now(), cartonData: data }
+				const updatedCards = [...existingCards, newCard]
+				localStorage.setItem("selectedBingoCards", JSON.stringify(updatedCards))
+			} else {
+				console.log("Límite de cartones alcanzado.")
 			}
-			existingCards.push(fullData)
-			localStorage.setItem("selectedBingoCards", JSON.stringify(existingCards))
-		} else {
-			console.log("Límite de cartones alcanzado.")
+		} catch (error) {
+			console.error("Error saving bingo card to localStorage:", error)
 		}
 	}
+
 	return (
 		<div className="w-full select-none rounded-md border border-gray-500/50 shadow">
 			<div className="w-full">
@@ -170,7 +174,9 @@ export const CreateMiBingoCards = ({
 											<input
 												type="number"
 												className="w-full text-center outline-none h-full bg-transparent"
-												onChange={(e) => handleChangeNumber(e, letra, index)}
+												onChange={(e) => {
+													return handleChangeNumber(e, letra, index)
+												}}
 											/>
 										)}
 									</span>
