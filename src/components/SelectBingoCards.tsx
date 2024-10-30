@@ -66,10 +66,10 @@ export const SelectBingoCards = ({
 
 	return (
 		<div className="mb-6 mt-6 w-full">
-			<p className="mx-auto mb-2 max-w-[20ch] text-center text-xl font-semibold md:max-w-[35ch]">
+			<p className="mx-auto mb-2 max-w-[28ch] text-center text-xl font-semibold md:max-w-[40ch]">
 				Busque el numero de tu carton favorito
 			</p>
-			<p className="mx-auto mb-2 max-w-[25ch] text-center text-lg font-semibold text-gray-400 md:max-w-[35ch]">
+			<p className="mx-auto mb-2 max-w-[28ch] text-center text-lg font-semibold text-gray-400 md:max-w-[35ch]">
 				Debes Seleccionar {storedNumberOfBingoCards} cartones
 			</p>
 			<form
@@ -83,7 +83,7 @@ export const SelectBingoCards = ({
 					required
 					placeholder="Numero del carton"
 					onChange={(e) => setSelectedCardId(Number(e.target.value))}
-					className="mb-4 w-full rounded-md border-2 border-gray-800 p-4 text-center text-xl font-semibold text-gray-900 outline-none transition hover:border-gray-700 focus:ring-2 focus:ring-blue-500"
+					className="mb-4 w-full rounded-md border-2 border-gray-800 p-4 text-center text-xl font-semibold text-gray-50 outline-none transition hover:border-gray-700 focus:ring-2 focus:ring-blue-500 bg-neutral-950"
 				/>
 				<button
 					type="submit"
