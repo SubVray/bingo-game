@@ -1,4 +1,6 @@
-export const Chevron = (props: React.SVGProps<SVGSVGElement>) => {
+import { SVGProps } from "react"
+
+export const Chevron = (props: SVGProps<SVGSVGElement>) => {
 	return (
 		<svg
 			{...props}
