@@ -17,7 +17,7 @@ html {
 	background: #13151a;
 }
 body {
-	font-family: "Rubik Variable", sans-serif;
+	font-family: "Rubik Variable", "Rubik", "Poppins", sans-serif;
 	color: #f9fafb;
 	scroll-behavior: smooth;
 	scroll-snap-type: y mandatory;
