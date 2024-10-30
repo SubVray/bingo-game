@@ -44,8 +44,16 @@ export const PlayBingoGame = ({
 			cancelButtonColor: "#d33",
 			confirmButtonText: "Si",
 			cancelButtonText: "No",
+			customClass: {
+				popup: " bg-[#13151a] ",
+				title: "text-neutral-200",
+				input: "!bg-transparent",
+				htmlContainer: "!text-neutral-400",
+				container: "!text-neutral-400",
+			},
 		}).then((result) => {
 			if (result.isConfirmed) {
+				localStorage.removeItem("selectedBingoCards")
 				Object.keys(localStorage)
 					.filter((key) => key.startsWith("carton-"))
 					.map((key) => localStorage.removeItem(key))
@@ -63,6 +71,81 @@ export const PlayBingoGame = ({
 			}
 		})
 	}
+
+	useEffect(() => {
+		// Agregar el estado actual para interceptar el retroceso
+
+		window.history.pushState(null, "", window.location.href)
+		const handleBackButton = () => {
+			MySwal.fire({
+				title: "Estas seguro que quieres salir?",
+				text: "Si te sales pierdes tu progreso",
+				icon: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Si",
+				cancelButtonText: "No",
+				customClass: {
+					popup: " bg-[#13151a] ",
+					title: "text-neutral-200",
+					input: "!bg-transparent",
+					htmlContainer: "!text-neutral-400",
+					container: "!text-neutral-400",
+				},
+			}).then(({ isConfirmed }) => {
+				if (isConfirmed) {
+					localStorage.removeItem("selectedBingoCards")
+					Object.keys(localStorage)
+						.filter((key) => key.startsWith("carton-"))
+						.map((key) => localStorage.removeItem(key))
+					Object.keys(localStorage)
+						.filter((key) => key.startsWith("cartonIs"))
+						.map((key) => localStorage.removeItem(key))
+
+					navigate("/")
+				} else {
+					window.history.pushState(null, "", window.location.href)
+				}
+			})
+		}
+
+		// Añadir el listener para detectar el retroceso
+		window.addEventListener("popstate", handleBackButton)
+
+		// Limpieza del listener cuando se desmonta el componente
+		return () => {
+			window.removeEventListener("popstate", handleBackButton)
+		}
+	}, [])
+
+	// useEffect(() => {
+	// 	const handleBackButton = (event) => {
+	// 		const confirmacion = window.confirm(
+	// 			"¿Estás seguro de que quieres salir de esta página?"
+	// 		)
+
+	// 		if (!confirmacion) {
+	// 			console.log("Cancelado")
+	// 			// Si el usuario cancela, volvemos a avanzar en el historial
+	// 			window.history.pushState(null, "", window.location.href)
+	// 		} else {
+	// 			console.log("Confirmado")
+	// 			navigate("/select-bingo-card")
+	// 		}
+	// 	}
+
+	// 	// Agregar el estado actual para interceptar el retroceso
+	// 	window.history.pushState(null, "", window.location.href)
+
+	// 	// Añadir el listener para detectar el retroceso
+	// 	window.addEventListener("popstate", handleBackButton)
+
+	// 	// Limpieza del listener cuando se desmonta el componente
+	// 	return () => {
+	// 		window.removeEventListener("popstate", handleBackButton)
+	// 	}
+	// }, [])
 
 	return (
 		<section className="mt-2 w-full">
