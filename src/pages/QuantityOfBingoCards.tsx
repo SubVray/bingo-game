@@ -1,22 +1,26 @@
 import { Button } from "@/components/Button"
 import { Container } from "@/components/Container"
 import { Logo } from "@/components/Logo"
+import { Paragraph } from "@/components/Paragraph"
 import { Section } from "@/components/Section"
-import Layout from "@/layout/Layout"
+import useDisableNavigationButtons from "@/hooks/useDisableNavigationButtons "
+import { useGlobalStore } from "@/store/GlobalStore"
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 import Swal from "sweetalert2"
 import withReactContent from "sweetalert2-react-content"
 
 const QuantityOfBingoCards = () => {
-	const navigate = useNavigate()
+	useDisableNavigationButtons()
+	const setHome = useGlobalStore((state) => state.setHome)
+	const setQuantityOfBingoCards = useGlobalStore(
+		(state) => state.setQuantityOfBingoCards
+	)
+	const setSelectBingoCard = useGlobalStore((state) => state.setSelectBingoCard)
+	const setSelectMiBingoCard = useGlobalStore(
+		(state) => state.setSelectMiBingoCard
+	)
 	const SwalQuantityOfBingoCards = withReactContent(Swal)
 	const [gameMode, setGameMode] = useState<string>("")
-
-	useEffect(() => {
-		const gameMode = localStorage.getItem("gameMode")
-		if (gameMode) setGameMode(gameMode)
-	}, [])
 
 	const selectNumberOfBingoCards = async () => {
 		try {
@@ -45,11 +49,13 @@ const QuantityOfBingoCards = () => {
 				localStorage.setItem("quantityOfBingoCards", quantityOfBingoCards)
 
 				if (gameMode === "mi-bingo") {
-					navigate("/select-mi-bingo-card")
+					setQuantityOfBingoCards(false)
+					setSelectMiBingoCard(true)
 				}
 
 				if (gameMode === "carton-bingo") {
-					navigate("/select-bingo-card")
+					setQuantityOfBingoCards(false)
+					setSelectBingoCard(true)
 				}
 			}
 		} catch (error) {
@@ -62,29 +68,35 @@ const QuantityOfBingoCards = () => {
 		}
 	}
 
+	useEffect(() => {
+		const gameMode = localStorage.getItem("gameMode")
+		if (gameMode) setGameMode(gameMode)
+	}, [])
+
 	return (
-		<Layout>
-			<Section>
-				<Logo />
-				<p className="text-center text-xl font-semibold my-6 max-w-[35ch] mx-auto">
-					Seleccione la cantidad de cartones
-				</p>
-				<Container>
-					<Button
-						onClick={selectNumberOfBingoCards}
-						className="bg-blue-500 border-blue-500/50 hover:ring ring-blue-500/30 hover:bg-blue-600 hover:border-blue-500"
-					>
-						Cantidad de Cartones
-					</Button>
-					<Button
-						onClick={() => navigate("/")}
-						className="bg-red-500 border-red-500/50 hover:ring ring-red-500/30 hover:bg-red-600 hover:border-red-500"
-					>
-						Salir
-					</Button>
-				</Container>
-			</Section>
-		</Layout>
+		<Section>
+			<Logo />
+			<Paragraph className="mx-auto my-6 max-w-[35ch] text-center text-xl font-semibold">
+				Seleccione la cantidad de cartones
+			</Paragraph>
+			<Container>
+				<Button
+					onClick={selectNumberOfBingoCards}
+					className="border-blue-500/50 bg-blue-500 ring-blue-500/30 hover:border-blue-500 hover:bg-blue-600 hover:ring"
+				>
+					Cantidad de Cartones
+				</Button>
+				<Button
+					onClick={() => {
+						setQuantityOfBingoCards(false)
+						setHome(true)
+					}}
+					className="border-red-500/50 bg-red-500 ring-red-500/30 hover:border-red-500 hover:bg-red-600 hover:ring"
+				>
+					Salir
+				</Button>
+			</Container>
+		</Section>
 	)
 }
 
