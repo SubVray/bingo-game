@@ -1,4 +1,4 @@
-import { BingoLetter, CartonData } from "@/types/carton"
+import { BingoLetter, Carton, CartonData } from "@/types/carton"
 import { useState } from "react"
 const FREE_SPACE = "FREE" // Define el espacio libre
 export const CreateMiBingoCards = ({
@@ -166,14 +166,14 @@ export const CreateMiBingoCards = ({
 												<span className="-mt-2 block">
 													<input
 														type="number"
-														className="w-full text-center outline-none h-full bg-transparent"
+														className="h-full w-full bg-transparent text-center outline-none"
 													/>
 												</span>
 											</>
 										) : (
 											<input
 												type="number"
-												className="w-full text-center outline-none h-full bg-transparent"
+												className="h-full w-full bg-transparent text-center outline-none"
 												onChange={(e) => {
 													return handleChangeNumber(e, letra, index)
 												}}
