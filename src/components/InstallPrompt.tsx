@@ -38,36 +38,36 @@ const InstallPrompt = () => {
 	return (
 		<div className="">
 			{isVisible && !isIOS && (
-				<div className=" top-0 left-0  right-0 flex gap-4  p-2 border-b shadow-slate-100">
-					<figure className="w-[130px] h-[50px] ">
+				<div className="left-0 right-0 top-0 flex gap-4 border-b p-2 shadow-slate-100">
+					<figure className="h-[50px] w-[130px]">
 						<img
 							src="/images/bingo.webp"
 							alt="Prompt de instalación"
-							className="w-full h-full rounded"
+							className="h-full w-full rounded"
 						/>
 					</figure>
 					<p>¡Instala nuestra aplicación para una mejor experiencia!</p>
 					<button
 						onClick={handleInstallClick}
-						className="bg-blue-500 px-2 rounded"
+						className="rounded bg-blue-500 px-2"
 					>
 						Instalar
 					</button>
 				</div>
 			)}
 			{isVisible && isIOS && (
-				<div className=" top-0 left-0  right-0 flex gap-4   p-2 border-b shadow-slate-100 w-full">
-					<figure className="w-[80px] h-[50px] ">
+				<div className="left-0 right-0 top-0 flex w-full gap-4 border-b p-2 shadow-slate-100">
+					<figure className="h-[50px] w-[80px]">
 						<img
 							src="/images/bingo.webp"
 							alt="Prompt de instalación"
-							className="w-full h-full rounded"
+							className="h-full w-full rounded"
 						/>
 					</figure>
 					<p>Agregar a pantalla de inicio</p>
 					<button
 						onClick={handleInstallClick}
-						className="bg-blue-500 px-2 rounded"
+						className="rounded bg-blue-500 px-2"
 					>
 						Instalar
 					</button>
