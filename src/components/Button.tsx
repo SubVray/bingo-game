@@ -11,7 +11,7 @@ export const Button = ({
 	return (
 		<button
 			{...props}
-			className={`w-full rounded-md p-4 font-semibold text-xl mb-6 border-2 transition-all disabled:bg-gray-400 disabled:ring-0 disable:hover:cursor-not-allowed    ${className}`}
+			className={`disable:hover:cursor-not-allowed mb-6 w-full rounded-md border-2 p-4 text-xl font-semibold transition-all disabled:bg-gray-400 disabled:ring-0 ${className}`}
 		>
 			{children}
 		</button>
