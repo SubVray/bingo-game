@@ -1,4 +1,4 @@
-import { Carton } from "@/types/carton"
+import { BingoLetter, Carton } from "@/types/carton"
 
 export const checkFullCarton = (cartonState: Carton) => {
 	// Verifica si todas las casillas están activas
@@ -20,7 +20,7 @@ export const checkFourCorners = (cartonState: Carton) => {
 export const checkHorizontal = (cartonState: Carton) => {
 	// Verifica si hay una fila completa activa
 	return Object.values(cartonState.cartonData).some((column, rowIndex) =>
-		["b", "i", "n", "g", "o"].every(
+		(["b", "i", "n", "g", "o"] as BingoLetter[]).every(
 			(letra) => cartonState.cartonData[letra][rowIndex].isActive
 		)
 	)
@@ -28,7 +28,7 @@ export const checkHorizontal = (cartonState: Carton) => {
 
 export const checkVertical = (cartonState: Carton) => {
 	// Verifica si hay una columna completa activa
-	return ["b", "i", "n", "g", "o"].some((letra) =>
+	return (["b", "i", "n", "g", "o"] as BingoLetter[]).some((letra) =>
 		cartonState.cartonData[letra].every((cell) => cell.isActive)
 	)
 }
