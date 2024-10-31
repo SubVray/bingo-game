@@ -16,8 +16,7 @@ const SelectMiBingoCard = () => {
 	const MySwal = withReactContent(Swal)
 	const [storedNumberOfBingoCards, setStoredNumberOfBingoCards] =
 		useState<number>(0)
-	const [isStartButtonDisabled, setIsStartButtonDisabled] =
-		useState<boolean>(false)
+
 	const setPlayBingo = useGlobalStore((state) => state.setPlayBingo)
 
 	const [selectedModes, setSelectedModes] = useState<MultiValue<ModeGame>>([])
@@ -72,19 +71,15 @@ const SelectMiBingoCard = () => {
 
 	return (
 		<Layout>
-			<section className="w-full mt-4">
+			<section className="mt-4 w-full">
 				<header className="flex gap-4">
 					<Button
-						disabled={isStartButtonDisabled}
 						onClick={handleStartGame}
-						className="bg-green-500 border-green-500/50 hover:ring ring-green-500/30 hover:bg-green-600 hover:border-green-500 disabled:border-gray-400"
+						className="border-green-500/50 bg-green-500 ring-green-500/30 hover:border-green-500 hover:bg-green-600 hover:ring disabled:border-gray-400"
 					>
 						Empezar
 					</Button>
-					<Button
-						onClick={() => navigate("/quantity-of-bingo-cards")}
-						className="bg-red-500 border-red-500/50 hover:ring ring-red-500/30 hover:bg-red-600 hover:border-red-500"
-					>
+					<Button className="border-red-500/50 bg-red-500 ring-red-500/30 hover:border-red-500 hover:bg-red-600 hover:ring">
 						Salir
 					</Button>
 				</header>
