@@ -1,22 +1,24 @@
 import { Button } from "@/components/Button"
 import { CreateMiBingoCards } from "@/components/CreateMiBingoCards"
 import { modeGames } from "@/constants/gameModes"
+import useDisableNavigationButtons from "@/hooks/useDisableNavigationButtons "
 import Layout from "@/layout/Layout"
+import { useGlobalStore } from "@/store/GlobalStore"
 import { ModeGame } from "@/types/modeGames"
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 import { MultiValue } from "react-select"
 import CreatableSelect from "react-select/creatable"
 import Swal from "sweetalert2"
 import withReactContent from "sweetalert2-react-content"
 
 const SelectMiBingoCard = () => {
+	useDisableNavigationButtons()
 	const MySwal = withReactContent(Swal)
-	const navigate = useNavigate()
 	const [storedNumberOfBingoCards, setStoredNumberOfBingoCards] =
 		useState<number>(0)
 	const [isStartButtonDisabled, setIsStartButtonDisabled] =
 		useState<boolean>(false)
+	const setPlayBingo = useGlobalStore((state) => state.setPlayBingo)
 
 	const [selectedModes, setSelectedModes] = useState<MultiValue<ModeGame>>([])
 
@@ -47,7 +49,7 @@ const SelectMiBingoCard = () => {
 			},
 		}).then((value) => {
 			if (value.isConfirmed) {
-				navigate("/play-bingo")
+				setPlayBingo(true)
 			}
 		})
 	}
