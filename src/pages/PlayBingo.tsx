@@ -1,11 +1,12 @@
 import { PlayBingoGame } from "@/components/PlayBingoGame"
 import { Section } from "@/components/Section"
-import Layout from "@/layout/Layout"
+import useDisableNavigationButtons from "@/hooks/useDisableNavigationButtons "
 import { Carton } from "@/types/carton"
 import { ModeGame } from "@/types/modeGames"
 import { useEffect, useState } from "react"
 
 const PlayBingo = () => {
+	useDisableNavigationButtons()
 	const [modeGames, setModeGames] = useState<ModeGame[]>([])
 	const [mostrarCartonesSeleccionados, setMostrarCartonesSeleccionados] =
 		useState<Carton[]>([])
@@ -30,15 +31,13 @@ const PlayBingo = () => {
 	}, [])
 
 	return (
-		<Layout>
-			<Section className="w-full mt-4">
-				<PlayBingoGame
-					modeGames={modeGames}
-					mostrarCartonesSeleccionados={mostrarCartonesSeleccionados}
-					numberOfCards={numberOfCards}
-				/>
-			</Section>
-		</Layout>
+		<Section className="w-full mt-4">
+			<PlayBingoGame
+				modeGames={modeGames}
+				mostrarCartonesSeleccionados={mostrarCartonesSeleccionados}
+				numberOfCards={numberOfCards}
+			/>
+		</Section>
 	)
 }
 
