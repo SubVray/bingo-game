@@ -1,14 +1,27 @@
 import { useEffect, useState } from "react"
 
+interface BeforeInstallPromptEvent extends Event {
+	prompt: () => Promise<void>
+	userChoice: Promise<{ outcome: "accepted" | "dismissed" }>
+}
+
+// Extiende el tipo de WindowEventMap para incluir el evento
+declare global {
+	interface WindowEventMap {
+		beforeinstallprompt: BeforeInstallPromptEvent
+	}
+}
+
 const InstallPrompt = () => {
-	const [deferredPrompt, setDeferredPrompt] = useState(null)
+	const [deferredPrompt, setDeferredPrompt] =
+		useState<BeforeInstallPromptEvent | null>(null)
 	const [isVisible, setIsVisible] = useState(false)
 	const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
 
 	useEffect(() => {
-		const handleBeforeInstallPrompt = (e) => {
-			e.preventDefault()
-			setDeferredPrompt(e)
+		const handleBeforeInstallPrompt = (event: BeforeInstallPromptEvent) => {
+			event.preventDefault()
+			setDeferredPrompt(event)
 			setIsVisible(true)
 		}
 
