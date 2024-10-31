@@ -2,23 +2,29 @@ import { Button } from "@/components/Button"
 import { Section } from "@/components/Section"
 import { SelectBingoCards } from "@/components/SelectBingoCards"
 import { modeGames } from "@/constants/gameModes"
-import Layout from "@/layout/Layout"
+import useDisableNavigationButtons from "@/hooks/useDisableNavigationButtons "
+import { useGlobalStore } from "@/store/GlobalStore"
 import { ModeGame } from "@/types/modeGames"
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 import { MultiValue } from "react-select"
 import CreatableSelect from "react-select/creatable"
 import Swal from "sweetalert2"
 import withReactContent from "sweetalert2-react-content"
 
 const SelectBingoCard = () => {
+	useDisableNavigationButtons()
 	const MySwal = withReactContent(Swal)
-	const navigate = useNavigate()
 	const [storedNumberOfBingoCards, setStoredNumberOfBingoCards] =
 		useState<number>(0)
 	const [isStartButtonDisabled, setIsStartButtonDisabled] =
 		useState<boolean>(false)
 	const [selectedModes, setSelectedModes] = useState<MultiValue<ModeGame>>([])
+
+	const setSelectBingoCard = useGlobalStore((state) => state.setSelectBingoCard)
+	const setQuantityOfBingoCards = useGlobalStore(
+		(state) => state.setQuantityOfBingoCards
+	)
+	const setPlayBingo = useGlobalStore((state) => state.setPlayBingo)
 
 	// Handle change in game modes selection
 	const handleChange = (value: MultiValue<ModeGame>) => {
@@ -73,7 +79,11 @@ const SelectBingoCard = () => {
 				input: "!bg-transparent",
 			},
 		}).then((value) => {
-			if (value.isConfirmed) navigate("/play-bingo")
+			if (value.isConfirmed) {
+				setSelectBingoCard(false)
+				setPlayBingo(true)
+				localStorage.setItem("playBingo", JSON.stringify(true))
+			}
 		})
 	}
 
@@ -96,29 +106,30 @@ const SelectBingoCard = () => {
 	}, [])
 
 	return (
-		<Layout>
-			<Section className="w-full mt-4">
-				<header className="flex gap-4">
-					<Button
-						disabled={isStartButtonDisabled}
-						onClick={handleStartGame}
-						className="bg-green-500 border-green-500/50 hover:ring ring-green-500/30 hover:bg-green-600 hover:border-green-500 disabled:border-gray-400"
-					>
-						Empezar
-					</Button>
-					<Button
-						onClick={() => navigate("/quantity-of-bingo-cards")}
-						className="bg-red-500 border-red-500/50 hover:ring ring-red-500/30 hover:bg-red-600 hover:border-red-500"
-					>
-						Salir
-					</Button>
-				</header>
-				<SelectBingoCards
-					storedNumberOfBingoCards={storedNumberOfBingoCards}
-					setIsStartButtonDisabled={setIsStartButtonDisabled}
-				/>
-			</Section>
-		</Layout>
+		<Section className="mt-4 w-full">
+			<header className="flex gap-4">
+				<Button
+					disabled={isStartButtonDisabled}
+					onClick={handleStartGame}
+					className="border-green-500/50 bg-green-500 ring-green-500/30 hover:border-green-500 hover:bg-green-600 hover:ring disabled:border-gray-400"
+				>
+					Empezar
+				</Button>
+				<Button
+					onClick={() => {
+						setSelectBingoCard(false)
+						setQuantityOfBingoCards(true)
+					}}
+					className="border-red-500/50 bg-red-500 ring-red-500/30 hover:border-red-500 hover:bg-red-600 hover:ring"
+				>
+					Salir
+				</Button>
+			</header>
+			<SelectBingoCards
+				storedNumberOfBingoCards={storedNumberOfBingoCards}
+				setIsStartButtonDisabled={setIsStartButtonDisabled}
+			/>
+		</Section>
 	)
 }
 
