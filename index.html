@@ -1,11 +1,49 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<link
+			rel="shortcut icon"
+			href="favicon.ico"
+			type="image/x-icon"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			href="/icons/favicon-16x16.png"
+			sizes="16x16"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			href="/icons/favicon-32x32.png"
+			sizes="32x32"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			href="/icons/favicon-512x512.png"
+			sizes="512x512"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			href="/icons/favicon-192x192.png"
+			sizes="192x192"
+		/>
+		<link
 			rel="icon"
 			type="image/svg+xml"
-			href="/vite.svg"
+			href="/icons/favicon.svg"
+		/>
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="/icons/apple-touch-icon.png"
+		/>
+		<meta
+			name="apple-mobile-web-app-title"
+			content="BingoGame"
 		/>
 		<meta
 			name="viewport"
@@ -55,20 +93,20 @@
 			type="module"
 			src="/src/main.tsx"
 		></script>
-	</body>
 
-	<script>
-		if ("serviceWorker" in navigator) {
-			window.addEventListener("load", () => {
-				navigator.serviceWorker
-					.register("/service-worker.js", { scope: "/" })
-					.then((registration) => {
-						console.log("Service Worker registrado con éxito:", registration)
-					})
-					.catch((error) => {
-						console.log("Error al registrar el Service Worker:", error)
-					})
-			})
-		}
-	</script>
+		<script>
+			if ("serviceWorker" in navigator) {
+				window.addEventListener("load", () => {
+					navigator.serviceWorker
+						.register("/service-worker.js", { scope: "/" })
+						.then((registration) => {
+							console.log("Service Worker registrado con éxito:", registration)
+						})
+						.catch((error) => {
+							console.log("Error al registrar el Service Worker:", error)
+						})
+				})
+			}
+		</script>
+	</body>
 </html>
