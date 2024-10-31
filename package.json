@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "vite",
 		"clean": "rimraf dist",
-		"build": "npm run clean && tsc -b && vite build",
+		"build": "pnpm run clean && tsc -b && vite build",
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview",
 		"format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css}\""
@@ -48,6 +48,9 @@
 		"vite-plugin-pwa": "^0.20.5"
 	},
 	"lint-staged": {
-		"src/**/*.{ts,tsx,js,jsx,json,css}": ["eslint --fix", "prettier --write"]
+		"src/**/*.{ts,tsx,js,jsx,json,css}": [
+			"eslint --fix",
+			"prettier --write"
+		]
 	}
 }
