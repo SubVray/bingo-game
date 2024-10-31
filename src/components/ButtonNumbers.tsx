@@ -7,6 +7,7 @@ type ButtonProps = {
 	number: string | number
 	cartonId: number
 	onDoubleClick: () => void
+	disabled: boolean
 }
 
 const ButtonNumbers: FC<ButtonProps> = ({
@@ -16,6 +17,7 @@ const ButtonNumbers: FC<ButtonProps> = ({
 	number,
 	cartonId,
 	onDoubleClick,
+	disabled,
 }) => {
 	const buttonClass = `h-12 w-full whitespace-nowrap border-gray-800 text-center font-medium sm:h-16 xsm:h-16  
     ${isActive ? "bg-red-400" : "bg-blue-500"}
@@ -29,6 +31,7 @@ const ButtonNumbers: FC<ButtonProps> = ({
 			aria-pressed={isActive}
 			onDoubleClick={onDoubleClick}
 			className={buttonClass}
+			disabled={disabled}
 		>
 			<span className="mx-auto flex h-full w-full flex-col items-center justify-center text-center text-sm sm:text-xs md:text-lg xsm:text-base font-bold ">
 				{number === "FREE" ? (
