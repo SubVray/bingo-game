@@ -19,7 +19,7 @@ export const checkFourCorners = (cartonState: Carton) => {
 
 export const checkHorizontal = (cartonState: Carton) => {
 	// Verifica si hay una fila completa activa
-	return Object.values(cartonState.cartonData).some((column, rowIndex) =>
+	return Object.values(cartonState.cartonData).some((_, rowIndex) =>
 		(["b", "i", "n", "g", "o"] as BingoLetter[]).every(
 			(letra) => cartonState.cartonData[letra][rowIndex].isActive
 		)
