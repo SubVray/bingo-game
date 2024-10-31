@@ -1,4 +1,4 @@
-import { Carton } from "@/types/carton"
+import { BingoLetter, Carton } from "@/types/carton"
 
 export const BingoCardPreview = ({ carton }: { carton: Carton }) => {
 	return (
@@ -32,8 +32,8 @@ export const BingoCardPreview = ({ carton }: { carton: Carton }) => {
 							className={`w-full flex border-gray-500 ${index !== 0 ? "border-t" : "border-none"}`}
 							key={index}
 						>
-							{["b", "i", "n", "g", "o"].map(
-								(letra: string | "b" | "i" | "n" | "g" | "o", letraIndex) => (
+							{(["b", "i", "n", "g", "o"] as BingoLetter[]).map(
+								(letra: BingoLetter, letraIndex) => (
 									<div
 										key={`${letra}-${letraIndex}`}
 										className={`h-[35px] w-full whitespace-nowrap border-gray-500 text-center font-medium ${letra !== "o" ? "border-r" : "border-none"}`}
