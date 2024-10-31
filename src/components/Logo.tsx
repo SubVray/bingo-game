@@ -1,6 +1,6 @@
 export const Logo = () => {
 	return (
-		<figure className="mx-auto max-w-md mt-4">
+		<figure className="mx-auto mt-4 max-w-md">
 			<img
 				src="/images/bingo.webp"
 				alt="Bingo"
