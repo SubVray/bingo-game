@@ -72,7 +72,7 @@ export const CreateMiBingoCards = ({
 			}
 
 			if (value >= min && value <= max) {
-				console.log("Numero dentro del rango")
+				console.log("Número dentro del rango")
 				const updatedData = { ...cartonData } as Record<
 					BingoLetter,
 					CartonData[]
