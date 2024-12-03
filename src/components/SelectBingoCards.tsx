@@ -31,7 +31,8 @@ export const SelectBingoCards = ({
 				Busque el numero de tu carton favorito
 			</Paragraph>
 			<Paragraph className="mx-auto mb-2 max-w-[28ch] text-center text-lg font-semibold text-gray-400 md:max-w-[35ch]">
-				Debes Seleccionar {storedNumberOfBingoCards} cartones
+				Debes Seleccionar {storedNumberOfBingoCards}
+				{storedNumberOfBingoCards > 1 ? " cartones" : " carton"}
 			</Paragraph>
 
 			<FormSelectBingoCards setPreviewedCards={setPreviewedCards} />
