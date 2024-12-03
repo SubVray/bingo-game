@@ -33,7 +33,7 @@ const FormSelectBingoCards = ({
 				name="selectedCardId"
 				max="60"
 				required
-				placeholder="Numero del carton"
+				placeholder="Número del cartón"
 				onChange={(e) => setSelectedCardId(Number(e.target.value))}
 				className="mb-4 w-full rounded-md border-2 border-gray-800 bg-neutral-950 p-4 text-center text-xl font-semibold text-gray-50 outline-none transition hover:border-gray-700 focus:ring-2 focus:ring-blue-500"
 			/>
