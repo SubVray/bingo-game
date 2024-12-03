@@ -26,6 +26,10 @@ body {
 	user-select: none;
 }
 
+img {
+	aspect-ratio: 16/9;
+}
+
 /* editar estilos de barra de scroll */
 ::-webkit-scrollbar {
 	width: 0px;
