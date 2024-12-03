@@ -49,7 +49,7 @@ const InstallPrompt = () => {
 	}
 
 	return (
-		<div className="">
+		<div className="w-full max-w-md">
 			{isVisible && !isIOS && (
 				<div className="left-0 right-0 top-0 flex gap-4 border-b p-2 shadow-slate-100">
 					<figure className="h-[50px] w-[130px]">
@@ -69,7 +69,7 @@ const InstallPrompt = () => {
 				</div>
 			)}
 			{isVisible && isIOS && (
-				<div className="left-0 right-0 top-0 flex w-full gap-4 border-b p-2 shadow-slate-100">
+				<div className="left-0 right-0 top-0 flex w-full gap-4 border border-b border-red-500 p-2 shadow-slate-100">
 					<figure className="h-[50px] w-[80px]">
 						<img
 							src="/images/bingo.webp"
