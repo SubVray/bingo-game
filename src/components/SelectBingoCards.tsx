@@ -28,7 +28,7 @@ export const SelectBingoCards = ({
 	return (
 		<Container className="mb-6 mt-6 w-full">
 			<Paragraph className="mx-auto mb-2 max-w-[28ch] text-center text-xl font-semibold md:max-w-[40ch]">
-				Busque el numero de tu carton favorito
+				Busque el número de tu cartón favorito
 			</Paragraph>
 			<Paragraph className="mx-auto mb-2 max-w-[28ch] text-center text-lg font-semibold text-gray-400 md:max-w-[35ch]">
 				Debes Seleccionar {storedNumberOfBingoCards}
