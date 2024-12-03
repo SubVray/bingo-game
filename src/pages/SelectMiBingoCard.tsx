@@ -85,7 +85,7 @@ const SelectMiBingoCard = () => {
 				</header>
 				<div className="">
 					<p className="mx-auto mb-2 max-w-[25ch] text-center text-xl font-semibold md:max-w-[35ch]">
-						Seleccione cada celda para colocar el numero en el carton
+						Seleccione cada celda para colocar el número en el cartón
 					</p>
 					{Array.from(Array(storedNumberOfBingoCards).keys()).map((index) => (
 						<CreateMiBingoCards
