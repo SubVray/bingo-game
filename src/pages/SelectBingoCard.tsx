@@ -47,17 +47,21 @@ const SelectBingoCard = () => {
 					styles={{
 						control: (styles) => ({
 							...styles,
-							width: "100%",
-							backgroundColor: "#0a0a0a",
-							border: "1px solid #13151a",
-							borderRadius: "0.5rem",
-							paddingTop: "0.5rem",
-							paddingBottom: "0.5rem",
+							"width": "100%",
+							"backgroundColor": "#0a0a0a",
+							"border": "2px solid #13151a",
+							"borderRadius": "0.5rem",
+							"paddingTop": "0.5rem",
+							"paddingBottom": "0.5rem",
+							":hover": {
+								borderColor: "#f9fafb",
+							},
 						}),
 
 						multiValue: (styles) => ({
 							...styles,
 							backgroundColor: "#13151a",
+							borderRadius: "0.3rem",
 						}),
 						multiValueLabel: (styles) => ({
 							...styles,
@@ -73,8 +77,9 @@ const SelectBingoCard = () => {
 			customClass: {
 				title:
 					"text-center text-xl font-semibold max-w-[30ch] mx-auto text-neutral-200",
-				container: "w-full h-full m-0 ",
-				htmlContainer: "w-full h-[calc(100dvh-300px)] p-0  ",
+				container:
+					"p-0 lg:px-[215px] xl:px-[420px] 2xl:px-[510px] 4xl:px-[620px] ",
+				htmlContainer: "w-full h-[calc(100dvh-300px)] p-0 max-w-lg !mx-auto  ",
 				popup: " bg-[#13151a] ",
 				input: "!bg-transparent",
 			},
@@ -106,7 +111,7 @@ const SelectBingoCard = () => {
 	}, [])
 
 	return (
-		<Section className="mt-4 w-full">
+		<Section className="mt-4 w-full max-w-xl">
 			<header className="flex gap-4">
 				<Button
 					disabled={isStartButtonDisabled}
