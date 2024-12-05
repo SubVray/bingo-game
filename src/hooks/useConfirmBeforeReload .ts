@@ -4,7 +4,7 @@ const useConfirmBeforeReload = () => {
 	useEffect(() => {
 		const handleBeforeUnload = (event: BeforeUnloadEvent) => {
 			event.preventDefault()
-			event.returnValue = "Hsy cambios sin grabar. ¿Abandonar ahora?"
+			event.returnValue = "Hay cambios sin grabar. ¿Abandonar ahora?"
 		}
 
 		// Agrega el evento `beforeunload` para prevenir la recarga
