@@ -74,7 +74,7 @@ const QuantityOfBingoCards = () => {
 	}, [])
 
 	return (
-		<Section>
+		<Section className="w-full max-w-xl">
 			<Logo />
 			<Paragraph className="mx-auto my-6 max-w-[35ch] text-center text-xl font-semibold">
 				Seleccione la cantidad de cartones
