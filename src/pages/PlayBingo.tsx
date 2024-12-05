@@ -3,6 +3,7 @@ import { Section } from "@/components/Section"
 import useDisableNavigationButtons from "@/hooks/useDisableNavigationButtons "
 import { Carton } from "@/types/carton"
 import { ModeGame } from "@/types/modeGames"
+import classNames from "classnames"
 import { useEffect, useState } from "react"
 
 const PlayBingo = () => {
@@ -31,7 +32,12 @@ const PlayBingo = () => {
 	}, [])
 
 	return (
-		<Section className="w-full mt-4">
+		<Section
+			className={classNames(
+				"mt-4 w-full",
+				numberOfCards >= 3 ? "md:max-w-5xl xl:max-w-3xl" : "max-w-xl"
+			)}
+		>
 			<PlayBingoGame
 				modeGames={modeGames}
 				mostrarCartonesSeleccionados={mostrarCartonesSeleccionados}
